@@ -10,6 +10,8 @@ import gossip5 from "../assets/gossip5.png";
 import gossip6 from "../assets/gossip6.png";
 import gossip7 from "../assets/gossip7.png";
 import gossip8 from "../assets/gossip8.png";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Register() {
   const [values, setValues] = useState({
@@ -19,8 +21,22 @@ function Register() {
     confirmPassword: "",
   });
 
+  const handleValidation = () => {
+    const { username, email, password, confirmPassword } = values;
+    if (password !== confirmPassword) {
+      toast.error("Password and confirm password should be same.", {
+        position: "bottom-right",
+        autoClose: 5000,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "dark",
+      });
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    handleValidation();
     alert("Hi");
   };
 
@@ -114,6 +130,7 @@ function Register() {
           </li>
         </ul>
       </FormContainer>
+      <ToastContainer />
     </>
   );
 }
