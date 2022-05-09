@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Logo from "../assets/logo.svg";
@@ -12,12 +12,21 @@ import gossip7 from "../assets/gossip7.png";
 import gossip8 from "../assets/gossip8.png";
 
 function Register() {
+  const [values, setValues] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
   const handleSubmit = (e) => {
     e.preventDefault();
     alert("Hi");
   };
 
-  const handleChange = (e) => {};
+  const handleChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
 
   return (
     <>
@@ -31,41 +40,45 @@ function Register() {
             <label className="username">
               <span>Username</span>
               <input
-                value=""
+                value={values.username}
                 type="text"
                 placeholder="zningLow"
                 name="username"
                 onChange={(e) => handleChange(e)}
+                required
               />
             </label>
             <label className="email">
               <span>Email</span>
               <input
-                value=""
+                value={values.email}
                 type="email"
                 placeholder="abcd@gmail.com"
                 name="email"
                 onChange={(e) => handleChange(e)}
+                required
               />
             </label>
             <label className="pwd">
               <span>Password</span>
               <input
-                value=""
+                value={values.password}
                 type="password"
                 placeholder="Password"
                 name="password"
                 onChange={(e) => handleChange(e)}
+                required
               />
             </label>
             <label className="confirmPwd">
               <span>Confirm Password</span>
               <input
-                value=""
+                value={values.confirmPassword}
                 type="password"
                 placeholder="Confirm Password"
                 name="confirmPassword"
                 onChange={(e) => handleChange(e)}
+                required
               />
             </label>
             <button type="submit">Sign Up</button>
