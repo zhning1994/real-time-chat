@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Logo from "../assets/logo.svg";
 import gossip1 from "../assets/gossip1.png";
@@ -16,6 +16,7 @@ import { registerRoute } from "../utils/APIRoutes.js";
 import axios from "axios";
 
 function Register() {
+  const navigate = useNavigate();
   const [values, setValues] = useState({
     username: "",
     email: "",
@@ -59,15 +60,20 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (handleValidation()) {
-      const { username, email, password, confirmPassword } = values;
+      const { username, email, password } = values;
       const { data } = await axios.post(registerRoute, {
         username,
         email,
         password,
-        confirmPassword,
       });
+      if (data.status === false) {
+        toast.error(data.msg, toastOptions);
+      }
+      if (data.status === true) {
+        localStorage.setItem("chat-app-user", JSON.stringify(data.user));
+      }
+      navigate("/");
     }
-    alert("Hi");
   };
 
   const handleChange = (e) => {
@@ -133,7 +139,7 @@ function Register() {
             </span>
           </div>
         </form>
-        <ul class="circles">
+        <ul className="circles">
           <li>
             <img src={gossip1} alt="gossip1" />
           </li>
