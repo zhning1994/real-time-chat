@@ -66,6 +66,6 @@ export const getAllUsers = async (req, res, next) => {
         ]);
         return res.json(users);
     } catch (error) {
-
+        next(error);
     }
 }
