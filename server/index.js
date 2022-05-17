@@ -3,7 +3,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import userRoutes from "./routes/userRoutes.js";
-import messagesRoute from "./routes/messagesRoute.js";
+import messagesRoutes from "./routes/messagesRoute.js";
 
 const app = express();
 dotenv.config();
@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 app.use("/api/auth", userRoutes);
-app.use("/api/messages", messagesRoute);
+app.use("/api/messages", messagesRoutes);
 
 const PORT = process.env.PORT;
 
