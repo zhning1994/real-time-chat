@@ -1,40 +1,64 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Logout from "./Logout";
 import ChatInput from "./ChatInput";
+import axios from "axios";
+import { sendMessageRoute, receiveMessageRoute } from "../utils/APIRoutes";
 
 function ChatContainer({ currentChat }) {
-  const handleSendMsg = async (msg) => {};
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    async function saveMessages() {
+      const data = await JSON.parse(localStorage.getItem("chat-app-user"));
+      const response = await axios.post(receiveMessageRoute, {
+        from: data.id,
+        to: currentChat._id,
+      });
+      setMessages(response.data);
+    }
+
+    saveMessages();
+  }, [currentChat]);
+
+  useEffect(() => {
+    const getCurrentChat = async () => {
+      if (currentChat) {
+        await JSON.parse(localStorage.getItem("chat-app-user"))._id;
+      }
+    };
+    getCurrentChat();
+  }, [currentChat]);
+
+  const handleSendMsg = async (msg) => {
+    const data = await JSON.parse(localStorage.getItem("chat-app-user"));
+  };
 
   return (
-    <>
-      {currentChat && (
-        <Container>
-          <div className="chat-header">
-            <div className="user-details">
-              <div className="avatar">
-                <img
-                  src={`data:image/svg+xml;base64,${currentChat.avatarImage}`}
-                  alt="avatar"
-                />
-              </div>
-              <div className="username">
-                <h3>{currentChat.username}</h3>
-              </div>
-            </div>
-            <Logout />
+    <Container>
+      <div className="chat-header">
+        <div className="user-details">
+          <div className="avatar">
+            <img
+              src={`data:image/svg+xml;base64,${currentChat.avatarImage}`}
+              alt="avatar"
+            />
           </div>
-          <div className="chat-messages"></div>
-          <ChatInput handleSendMsg={handleSendMsg} />
-        </Container>
-      )}
-    </>
+          <div className="username">
+            <h3>{currentChat.username}</h3>
+          </div>
+        </div>
+        <Logout />
+      </div>
+      <div className="chat-messages"></div>
+      <ChatInput handleSendMsg={handleSendMsg} />
+    </Container>
   );
 }
 
 const Container = styled.div`
   display: grid;
-  grid-template-rows: 10% 80% 10%;
+  grid-template-rows: 10% 74% 16%;
   gap: 0.1rem;
   overflow: hidden;
   @media screen and (min-width: 720px) and (max-width: 1080px) {
