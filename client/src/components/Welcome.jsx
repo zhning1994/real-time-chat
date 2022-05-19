@@ -6,9 +6,7 @@ function Welcome({ currentUser }) {
   return (
     <Container>
       <img src={Robot} alt="Welcome" />
-      <h1>
-        Welcome, <span>{currentUser.username}</span> !
-      </h1>
+      <h1>Welcome !</h1>
       <h3>Please select a chat to start.</h3>
     </Container>
   );
