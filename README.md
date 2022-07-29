@@ -14,7 +14,9 @@
 
 ## Purpose of Project
 
-Real time chat apps has been using in our daily life, such as WhatsApp, Messenger etc. Most of the web apps or mobile apps will have real time chat functions, it is the faster and convenience way to communicate with each other besides email. Therefore, I decided to create a chat app which I can use it with my friends, gossiping about some fancy things. Socket.io will be used for creating real time chat app. This is the first time I used Socket, it is complicated at first, but after looking some tutorial, I am more familiar with socket after all. 
+Real time chat apps has been using in our daily life, such as WhatsApp, Messenger etc. Most of the web apps or mobile apps will have real time chat functions, it is the faster and convenience way to communicate with each other besides email. Therefore, I decided to create a chat app which I can use it with my friends, gossiping about some fancy things. 
+
+**Socket.io** will be used for creating real time chat app. This is the first time I used Socket, it is complicated at first, but after looking some tutorial, I am more familiar with socket after all. 
 
 This chat app is completed, but I have facing some problem when deploying to Heroku, so currently still figure other ways to deploy this app, but this project can be cloned and installed, I have attached .env file, so would not have any problem when download at other machines.
 
@@ -36,16 +38,15 @@ Details of projects :
 
 ## Run This Project Locally
 
-```
-git status
-git add
-git commit
-
-```
-
+1. git clone https://github.com/zhning1994/real-time-chat.git
+2. go to client folder, npm install
+3. go to server folder, npm install
+4. go to server folder, npm start (run server at port 5000)
+5. go to client folder, npm start (run at http://localhost:3000/login)
+6. create account 
 
 ## Special Thanks to Credits
 
-Thank you ***Bassir Jafarzadeh***! I following his tutorial to build this project. I am so appreciate that he willing to share all his knowledge with everyone on the world. :hearts: 
+Thank you ***Kishan Sheth*** ! Thank you Kishan for sharing his knowledge of socket.io ! He explained the process of project in details, big thumb for him :hearts: 
 
-I learn a lot from his channel, here is the link : https://www.youtube.com/c/CodingwithBasir
+I learn a lot from his channel, here is the link : https://www.youtube.com/c/KishanSheth21
