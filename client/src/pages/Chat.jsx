@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
-import styled from "styled-components";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { allUsersRoute, host } from "../utils/APIRoutes";
-import Contacts from "../components/Contacts";
-import Welcome from "../components/Welcome";
-import ChatContainer from "../components/ChatContainer";
-import { io } from "socket.io-client";
+import React, { useState, useEffect, useRef } from 'react';
+import styled from 'styled-components';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { allUsersRoute, host } from '../utils/APIRoutes';
+import Contacts from '../components/Contacts';
+import Welcome from '../components/Welcome';
+import ChatContainer from '../components/ChatContainer';
+import { io } from 'socket.io-client';
 
 function Chat() {
   const navigate = useNavigate();
@@ -17,10 +17,10 @@ function Chat() {
 
   useEffect(() => {
     async function userCheck() {
-      if (!localStorage.getItem("chat-app-user")) {
-        navigate("/login");
+      if (!localStorage.getItem('chat-app-user')) {
+        navigate('/login');
       } else {
-        setCurrentUser(await JSON.parse(localStorage.getItem("chat-app-user")));
+        setCurrentUser(await JSON.parse(localStorage.getItem('chat-app-user')));
       }
     }
 
@@ -30,7 +30,7 @@ function Chat() {
   useEffect(() => {
     if (currentUser) {
       socket.current = io(host);
-      socket.current.emit("add-user", currentUser._id);
+      socket.current.emit('add-user', currentUser._id);
     }
   }, [currentUser]);
 
@@ -41,7 +41,7 @@ function Chat() {
           const data = await axios.get(`${allUsersRoute}/${currentUser._id}`);
           setContacts(data.data);
         } else {
-          navigate("/setAvatar");
+          navigate('/setAvatar');
         }
       }
     }
