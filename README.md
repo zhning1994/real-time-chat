@@ -1,4 +1,4 @@
-# Jupiter - Nextjs E-commerce apps 
+# FriChat - Real Time Chat App With Socket.io
 
 ## Hi 👋, I'm Low Zhen Ning
 ========================
